@@ -1,0 +1,129 @@
+\documentclass[12pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath, amssymb, graphicx, amsthm, hyperref}
+%\usepackage{fancyhdr}
+%\usepackage{pslatex} % À enlever si problème, soit disant pour rendre le document plus "lisible" 
+
+\usetheme{Madrid}
+
+\title{La transformée de \textsc{Gelfand}}
+\subtitle{Lien avec la physique, et théorie des algèbres de Banach}
+\author{Fabien \textsc{Delhomme} \thanks{sous les précieux conseils de Vilmos \textsc{Komornik}}}
+
+\begin{document}
+
+\newcommand{\Z}[1]{\mathbb{Z}/#1\mathbb{Z}}
+\newcommand{\Ze}{\mathbb{Z}}
+\newcommand{\N}{\mathrm{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Lun}{\mathrm{L}^1}
+\newcommand{\Ker}{\mathrm{Ker}}
+\newcommand{\e}{\textrm{e}}
+\newcommand{\inv}[1]{#1^\ast}
+
+\newtheorem{myth}{Theorème}
+\newtheorem{mydef}{Définition}
+\newtheorem{cor}{Corollaire}
+\newtheorem{ex}{Exemple}
+
+\maketitle
+
+\AtBeginSection[]{
+  \begin{frame}{Sommaire}
+  \small \tableofcontents[currentsection, hideothersubsections]
+  \end{frame} 
+}
+\section{Introduction et premiers exemples}
+
+%On cherche à motiver l'étude des algèbres de banach, en commençant par les définir, puis en finissant sur le lemme de weiner, qui
+%permet de motiver l'étude de ce genre d'algèbre puisque certaines preuves deviennent ainsi très élégantes
+
+
+
+\subsection{Contexte}
+
+\begin{frame}{Qu'est-ce qu'une algèbre de Banach ?}
+    \begin{mydef}
+        Une algèbre de Banach $A$ est un espace vectoriel complexe normé \emph{complet}, tel que :
+        \begin{align*}
+            x(yz) &= (xy)z\\
+            (x + y)z &= xz + yz\\
+            x(y+z) &= xy + yz \\
+            \alpha(xy) &= (\alpha x)y = x(\alpha y)
+        \end{align*}
+       
+        Et munit d'une norme d'algèbre :
+        \begin{displaymath}
+            \forall x,y \in A \quad \| x y \| \leq \|x\| \|y\|
+        \end{displaymath}
+    \end{mydef}
+\end{frame}
+
+\begin{frame}{Ajout d'une unité}
+    On peut toujours ajouter une unité dans une algèbre de Banach. Soit $A$ une telle Algèbre.
+    On pose :
+    $\hat{A} = \{ ( x, \alpha) \ | \ x \in A \, ,\, \alpha \in \C \}$. On définit :
+    \[
+        (x, \alpha) ( y, \beta) = (xy + \alpha y + \beta x, \alpha \beta )
+        \]
+    et 
+    \[
+        \| (x, \alpha) \| = \|x\| + |\alpha|
+        \]
+    Finalement, on pose $e = (0, 1)$
+    \begin{myth}
+        $\hat{A}$ est une algèbre de Banach munit d'un élément neutre, et isomorphe à $A$ par l'application $x \to (x, 0) $.
+    \end{myth}
+\end{frame}
+
+\begin{frame}{Spectres}
+
+\end{frame}
+
+\subsection{Premiers théorèmes et applications}
+
+
+\begin{frame}{Résultats sur les spectres}
+\end{frame}
+\begin{frame}{Caractérisation des éléments inversibles}
+\end{frame}
+\begin{frame}{Premiers exemples}
+%pour donner de l'appétit aux matheux
+
+\end{frame}
+
+\subsubsection{Le lemme de \textsc{Wiener}}
+
+\begin{frame}{Lemme de Wiener - Énoncé}
+    \begin{myth}
+        Soit $f$ une fonction de $\R^n$, et soit $(a_m)_{m \in \Ze} \in \R^{\Ze} $ telle que 
+        \[
+            f(x) = \sum_{m\in \Ze } a_m \textrm{e}^{im*x} \quad \text{,} \quad \sum_{m \in \Ze } | a_m | < \infty 
+        \]
+
+        Si $f$ ne s'annule jamais sur $\R^n$, alors il existe $(b_m)_{m \in \Ze} $ telle que :
+        \[
+            \frac{1}{f(x)} = \sum_{m \in \Ze} b_m \e^{im*x} \quad \text{,} \quad \sum_{m \in \Ze } | b_m | < \infty 
+        \]
+    \end{myth}
+\end{frame}
+
+\begin{frame}{Lemme de Wiener - Preuve}
+
+\end{frame}
+
+\subsection{Lien avec la physique quantique}
+
+\subsection{Construction de }
+
+\section{Conclusion}
+
+\begin{frame}
+\bibliographystyle{plain}
+\bibliography{../bibliographie/bibliographie.bib}
+\end{frame}
+\end{document}
