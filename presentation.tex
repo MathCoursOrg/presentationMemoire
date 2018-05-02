@@ -1,4 +1,4 @@
-\documentclass[11pt, draft]{beamer}
+\documentclass[11pt, xcolor=table]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[francais]{babel}
@@ -78,8 +78,6 @@
     \end{itemize}
     \end{ex}
 \end{frame}
-
-
 
 \begin{frame}{Ajout d'une unité}
     On peut toujours ajouter une unité dans une algèbre de Banach. Soit $A$ une telle Algèbre.
@@ -248,10 +246,163 @@
     \end{myth}
 \end{frame}
 
+%Fin repêchage des écrits du mémoire ======================================================
+
+%==========================================================================================
+%==========================================================================================
+%==========================================================================================
+
+%Début physique quantique==================================================================
+
+\section{Présentation des (quelques) physiciens à l'origine de la physique quantique}
+
+\begin{frame}{Physique quantique - Pères fondateurs}
+    On doit les fondations de la physique quantique, à partir de 1925, à :
+%Heisenberg paper of 1925, the problem arose of a mathemati­
+%cal formulation of the emerging theory. Born recognized the structure of
+%noncommutative matrices and then Dirac laid down the basic formulation,
+%later put in a mathematically acceptable form by von Neumann
+    %TODO: mettre les images
+
+
+\end{frame}
+
+\section{Formalisation du monde microscopique}
+
+\begin{frame}{Formaliser le monde microscopique}
+    \begin{mydef}
+        Un système physique $S$ est la collection d'ensembles $\Sigma$ d'états $\omega$ obtenus après une préparation adéquate.
+
+        Une observable $A \in S$ est définie par les protocoles expérimentaux qui la mesure.
+
+        La moyenne des mesures d'une observable $A$ dans un état $\omega$ est appelée l'espérance $\omega(A)$
+
+        On note $\mathcal{O}$ l'ensemble des observables.
+    \end{mydef}
+\end{frame}
+
+\begin{frame}{Relation d'équivalence}
+    \begin{myth}
+        Deux états $\omega_1, \omega_2$ tel que :
+        \[
+            \omega_1 ( A) = \omega_2(A) \quad \forall A \in \mathcal{O}
+        \]
+        Ne peuvent pas être différenciés, et sont donc identifiés.
+        
+        De même, si la mesure de deux observables $A_1$ et $A_2$ sont identiques quelque soit les états, c'est-à-dire :
+        \[
+            \omega(A_1) = \omega(A_2) \quad \forall \omega \in \Sigma
+        \]
+        Alors $A_1 = A_2$.
+    \end{myth}
+\end{frame}
+
+\begin{frame}{Opérations sur les observables}
+    \begin{block}{Opérations}
+        %On peut toujours le «compléxifier»
+        On peut toujours définir :
+        \[
+            \lambda * A^n \in \mathcal{O} \quad \forall A \in \mathcal{O}, n \in \N
+        \]
+        On a donc toujours l'existence d'une algèbre commutative formée de polynôme en $A$.
+
+        On peut définir l'identité de $\mathcal{O}$ par $A^0 = 1_A$. Et cette identité coïncide avec l'identité de $\mathcal{O}$.
+    \end{block}
+
+    On a automatiquement une involution sur $\mathcal{O}$ :
+    \begin{mydef}
+        \[
+            \inv{(\alpha A + \mu B)} = \overline{\alpha}A + \overline{\mu}B \quad \lambda, \mu \in \C 
+        \]
+    \end{mydef}
+    
+\end{frame}
+
+\begin{frame}{Interprétation des homomorphismes}
+    \begin{alertblock}{Les homomorphismes ...}
+        L'application $ A \longrightarrow m^{\omega} (A) \in \C$ est un homomorphisme 
+    \end{alertblock}
+    On définit donc la norme 
+    \begin{mydef}
+        \[
+            \| A \| = \sup_{\omega \in \Sigma} | \omega(A) | %TODO: trouver une interprétation
+        \]
+        En effet, les mesures d'une observables sont toujours bornées.
+    \end{mydef}
+
+\end{frame}
+
+\begin{frame}{Propriétés de la norme}
+
+    \begin{myth}
+        On a les propriétés voulues de la norme définie précédemment :
+        \begin{align*}
+            \| A + B \| &\leq \| A \| + \| B \| \\
+            \| \inv{A} \| &= \| A \| \\
+            \| A \inv{A} \| &\geq \| A \|^2 \quad \text{Avec égalité si} \ A \ \text{est hermitien} \\
+            \| AB \| &\leq \|A\| \| B \|\\
+            \| A \| = 0 & \implies A = 0
+        \end{align*}
+    \end{myth}
+\end{frame}
+
+\begin{frame}{Retour sur la positivité}
+
+    Nous avons étendu les observables dans un espace vectoriel complexe. Mais en fait :
+    \begin{myth}
+       Les propositions suivantes sont équivalentes :
+        \begin{itemize}
+            \item Le spectre de $A$ est contenu dans $\R^+$
+            \item Il existe $B \in \mathcal{O}$ telle que $B = A \inv{A} $
+            \item Pour tout $\omega$, $\omega(A) \geq 0 $
+        \end{itemize}
+
+    \end{myth}
+\end{frame}
+
+\begin{frame}{Passage de la commutativité à la non commutativité}
+    \begin{alertblock}{Limitations de cette description classique}
+            Plusieurs limitations :
+            \begin{itemize}
+                \item Il est très difficile de préparer $A \in \mathcal{O}$ de façon identique pour le mesurer
+                \item Les mesures ont forcément un écart type non nul.
+                \item \textbf{En physique quantique, mesurer une observable va perturber la prochaine mesure.}
+            \end{itemize}
+            On perd donc la notion de commutativité !
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{Récapitulatif de la traduction physique mathématique}
+
+    On obtient le tableau de correspondances suivant :
+    \renewcommand{\arraystretch}{1.5}
+    \setlength{\tabcolsep}{0.2cm}
+    \rowcolors{1}{gray}{} 
+    \begin{block}{Tableau récapitulatif}
+        \begin{tabular}{|c|c|}
+            \hline
+            \textbf{Mathématique} & \textbf{Physique} \\
+            \hline
+            Espace vectoriel munit de propriétés, $A$ & Ensemble des observables, $\mathcal{O}$\\
+            \hline
+            Tous les homomorphismes de $A$, $ h \in \Delta$ & L'ensemble des états, $\omega \in \Sigma$ \\
+            \hline
+            Commutativité & Physique classique\\
+            \hline 
+            Non commutativité & Physique quantique \\
+            \hline
+            Transformée de Gelfand & Mesure d'une observable \\
+            \hline
+        \end{tabular}
+    \end{block}
+\end{frame} 
+
+
 %Références================================================================================
+\nocite{*}
 
 \begin{frame}
 \bibliographystyle{plain}
-\bibliography{../bibliographie/bibliographie.bib}
+    \bibliography{../bibliographie/bibliographie}
 \end{frame}
 \end{document}
