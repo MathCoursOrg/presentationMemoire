@@ -1,4 +1,4 @@
-\documentclass[12pt]{beamer}
+\documentclass[11pt, draft]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[francais]{babel}
@@ -24,6 +24,9 @@
 \newcommand{\Ker}{\mathrm{Ker}}
 \newcommand{\e}{\textrm{e}}
 \newcommand{\inv}[1]{#1^\ast}
+\newcommand{\norminf}[1]{\| #1 \|_{\infty}}
+\newcommand{\Calg}{$\mathcal{C}^\ast$-algèbre }
+\newcommand{\Calgs}{$\mathcal{C}^\ast$-algèbres }
 
 \newtheorem{myth}{Theorème}
 \newtheorem{mydef}{Définition}
@@ -63,6 +66,21 @@
     \end{mydef}
 \end{frame}
 
+\begin{frame}{Exemples}
+    
+\begin{ex}
+    Quelques exemples d'algèbres de Banach  :
+
+    \begin{itemize}
+        \item L'espace des matrices complexes muni de la multiplication usuelle et d'une norme subordonnée. 
+        \item L'ensemble des fonctions $\Lun$ munies de la convolution. On voit en particulier qu'on ne demande pas
+            l'existence d'un élément neutre pour la loi multiplicative.
+    \end{itemize}
+    \end{ex}
+\end{frame}
+
+
+
 \begin{frame}{Ajout d'une unité}
     On peut toujours ajouter une unité dans une algèbre de Banach. Soit $A$ une telle Algèbre.
     On pose :
@@ -80,23 +98,62 @@
     \end{myth}
 \end{frame}
 
-\begin{frame}{Spectres}
+\begin{frame}{Spectres, et premières propriétés}
+    \begin{mydef}
+        Le \emph{spectre} d'un élément $x \in A$ est défini par :
+        \[
+            \sigma(x) := \{ \lambda \in \C \ | \ \lambda e - x  \ \text{n'est pas inversible} \} 
+        \]
+    \end{mydef}
+    On définit aussi $\rho(x) := \sup \{ |\lambda| \, , \lambda \in \sigma(x) \}$
 
+    On a les premières propriétés :
+
+    \begin{myth}
+        \begin{itemize}
+                \item Le spectre est compact et non vide.
+                \item $\rho(x) = \lim_{n \longrightarrow \infty} \| x^n \|^\frac{1}{n} = \inf_{n \geq 1} \| x^n \|^\frac{1}{n}$
+        \end{itemize}
+        Donc en particulier $\rho(x) \leq \| x \| $.
+    \end{myth}
 \end{frame}
 
-\subsection{Premiers théorèmes et applications}
+%TODO: les trucs en dessous sont en vrac !
+\begin{frame}{Théorème de \textsc{Gelfand}-\textsc{Mazur}}
+    Que peut-on dire d'une algèbre où tous les éléments non nulles sont inversibles ?
 
-
-\begin{frame}{Résultats sur les spectres}
-\end{frame}
-\begin{frame}{Caractérisation des éléments inversibles}
-\end{frame}
-\begin{frame}{Premiers exemples}
-%pour donner de l'appétit aux matheux
-
+    \begin{myth}[\textsc{Gelfand}-\textsc{Mazur}]
+        Si $A$ est une algèbre de Banach, telle que tous les éléments non nulles sont inversibles, alors $A$ est isomorphe à
+        $\C$. De plus, l'isomorphisme est une isométrie.  
+    \end{myth}
 \end{frame}
 
-\subsubsection{Le lemme de \textsc{Wiener}}
+\begin{frame}{Les idéaux}
+    \begin{mydef}[Idéal]
+        Soit $J \subset A$ un sous espace vectoriel de A. $J$ est un idéal de $A$ si 
+        \[
+            \forall x, y \in A*J \quad x*y \in J
+        \] 
+        Si $J \not = A$ et $J \not = \{0\}$ alors $J$ est un \emph{idéal propre} de $A$. Les \emph{idéaux maximaux} sont des idéaux propres qui ne sont
+        contenus dans aucun autre idéal propre.
+    \end{mydef}
+\end{frame}
+
+\begin{frame}{Merveilleux théorème}
+    Voici l'outil fondamental de la théorie des Algèbres de Banach commutative.
+
+       \begin{myth}[Caractérisation des inversibles]
+           Notons $\Delta$ l'ensemble des homomorphismes de $A$. Alors :
+           \begin{itemize}[<+->]
+               \item Tout idéal maximal est le noyau d'un homomorphismes de $\Delta$, et \emph{vice versa}.
+               \item $x \in A$ est inversible si et seulement si $h(x) \not = 0$ pour tout $h \in \Delta$
+               \item $x \in A$ est inversible si et seulement si $x$ n'appartient à aucun idéal propre de $A$.
+               \item $\lambda \in \sigma(x) $  si et seulement si $h(x) = \lambda $ pour un $h \in \Delta$
+           \end{itemize}
+
+           L'ensemble $\Delta$ gardera cette signification jusqu'à la fin du document.
+       \end{myth} 
+\end{frame}
 
 \begin{frame}{Lemme de Wiener - Énoncé}
     \begin{myth}
@@ -116,11 +173,82 @@
 
 \end{frame}
 
-\subsection{Lien avec la physique quantique}
+\begin{frame}{La transformée de Gelfand}
+    On définit la transformée de Gelfand par :
+    \begin{mydef}
+        \[
+            \hat{x} : h \in \Delta \longrightarrow h(x) \in \C 
+        \]
+        Et on note $\hat{A} = \{ \hat{x} \ | \ x \in A \}$
+    \end{mydef}
+\end{frame}
 
-\subsection{Construction de }
+\begin{frame}
+    \begin{myth}{Propriétés de la transformée de \textsc{Gelfand}}
+        \begin{itemize}
+            \item La transformée de \textsc{Gelfand} est un homomorphisme de $A$ vers $\hat{A}$, de noyau le radical de $A$.
+            \item La transformée de \textsc{Gelfand} est donc un isomorphisme si $A$ est semi simple !
+                \item On a aussi la comparaison :
+                    \[
+                        \| \hat{x} \|_{\infty} = \rho(x) \leq \| x \|
+                    \]
+                \item Et $\rho(x) = 0 \iff x \in \mathrm{rad}(A) $
+        \end{itemize}
+        \end{myth}
 
-\section{Conclusion}
+        Avec :
+        \begin{mydef}
+            \[
+                \norminf{\hat{x}} = \sup_{h \in \Delta } | \hat{x}(h) |
+            \]
+        \end{mydef}
+\end{frame}
+
+
+\begin{frame}{Involution}
+    \begin{mydef}[Involution]
+        Une involution est une fonction $x \in A \longrightarrow \inv{x} \in A$ qui a les propriétés suivantes :
+        \begin{align*}
+            \inv{ (x + y) }  &= \inv{x} + \inv{y}\\
+            \inv{( \lambda x) } &= \overline{\lambda} * \inv{x}\\
+            \inv{( x * y) } &= \inv{ y } * \inv{x}\\
+            (x^\ast)^\ast &= x 
+        \end{align*}
+        Et l'algèbre $A$ n'a pas besoin d'être commutative dans cette définition.
+
+        On dit que $x \in A $ est \emph{hermitien} si et seulement si $\inv{x} = x $.
+    \end{mydef}
+\end{frame}
+
+\begin{frame}{Les \Calgs}
+    \begin{mydef}[Les \Calgs]
+        Une \Calg est une algèbre de Banach munie d'une involution telle que : 
+        \[
+            \| \inv{x} * x \| = \| x \|^2 \quad \forall x \in A
+        \]
+        Cela implique aussi que :
+        \[
+            \| \inv{x} \| = \| x \|
+        \]
+        Et ainsi :
+        \[
+            \| x \inv{x} \| = \| x \| \| \inv{x} \|
+        \]
+    \end{mydef}
+\end{frame}
+
+\begin{frame}{Théorème de \textsc{Gelfand}-\textsc{Naimark}}
+    \begin{myth}[Théorème de \textsc{Gelfand}-\textsc{Naimark}]
+        Si $A$ est une \Calg \emph{commutative}, et en notant $\Delta$ un idéal maximum , alors la transformée de Gelfand est une isométrie de $A$ vers $\mathcal{C}(\Delta)$
+        avec la propriété :
+        \[
+            h(\inv{x}) = \overline{h(x)}
+        \]
+        En particulier : $x$ est hermitien si et seulement si $\hat{x}$ est une fonction réelle.
+    \end{myth}
+\end{frame}
+
+%Références================================================================================
 
 \begin{frame}
 \bibliographystyle{plain}
