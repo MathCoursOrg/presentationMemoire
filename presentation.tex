@@ -15,6 +15,8 @@
 
 \begin{document}
 
+\newcommand{\Bh}{$\mathcal{B}(H)$ }
+\newcommand{\Bhm}{\mathcal{B}(H)}
 \newcommand{\Z}[1]{\mathbb{Z}/#1\mathbb{Z}}
 \newcommand{\Ze}{\mathbb{Z}}
 \newcommand{\N}{\mathrm{N}}
@@ -40,14 +42,12 @@
   \small \tableofcontents[currentsection, hideothersubsections]
   \end{frame} 
 }
-\section{Introduction et premiers exemples}
+\section{Introduction formelle des algèbres de Banach}
 
 %On cherche à motiver l'étude des algèbres de banach, en commençant par les définir, puis en finissant sur le lemme de weiner, qui
 %permet de motiver l'étude de ce genre d'algèbre puisque certaines preuves deviennent ainsi très élégantes
 
-
-
-\subsection{Contexte}
+\subsection{Premières définitions}
 
 \begin{frame}{Qu'est-ce qu'une algèbre de Banach ?}
     \begin{mydef}
@@ -96,6 +96,8 @@
     \end{myth}
 \end{frame}
 
+\subsection{Spectres et homomorphismes}
+
 \begin{frame}{Spectres, et premières propriétés}
     \begin{mydef}
         Le \emph{spectre} d'un élément $x \in A$ est défini par :
@@ -116,7 +118,10 @@
     \end{myth}
 \end{frame}
 
-%TODO: les trucs en dessous sont en vrac !
+
+
+\subsection{Théorème de \textsc{Gelfand}-\textsc{Mazur}}
+
 \begin{frame}{Théorème de \textsc{Gelfand}-\textsc{Mazur}}
     Que peut-on dire d'une algèbre où tous les éléments non nulles sont inversibles ?
 
@@ -124,6 +129,21 @@
         Si $A$ est une algèbre de Banach, telle que tous les éléments non nulles sont inversibles, alors $A$ est isomorphe à
         $\C$. De plus, l'isomorphisme est une isométrie.  
     \end{myth}
+\end{frame}
+
+\subsection{Homomorphismes et caractérisation des inversibles}
+
+\begin{frame}
+    \begin{mydef}[Homomorphisme]
+        Un homomorphisme $h : A \longrightarrow \C$ est une application linéaire, non nulle, et multiplicative, c'est à dire :
+        \[
+            h(x*y) = h(x)*h(y) \quad \forall x,y \in A
+        \]
+    \end{mydef}
+
+    \begin{mydef}
+        On notera $\Delta$ l'ensemble des homomorphismes de $A$.
+    \end{mydef} 
 \end{frame}
 
 \begin{frame}{Les idéaux}
@@ -153,6 +173,7 @@
        \end{myth} 
 \end{frame}
 
+\subsection{Application : lemme de Wiener }
 \begin{frame}{Lemme de Wiener - Énoncé}
     \begin{myth}
         Soit $f$ une fonction de $\R^n$, et soit $(a_m)_{m \in \Ze} \in \R^{\Ze} $ telle que 
@@ -168,8 +189,20 @@
 \end{frame}
 
 \begin{frame}{Lemme de Wiener - Preuve}
+    \begin{myth}
+        Soit $f$ une fonction de $\R^n$, et soit $(a_m)_{m \in \Ze} \in \R^{\Ze} $ telle que 
+        \[
+            f(x) = \sum_{m\in \Ze } a_m \textrm{e}^{im*x} \quad \text{,} \quad \sum_{m \in \Ze } | a_m | < \infty 
+        \]
 
+        Si $f$ ne s'annule jamais sur $\R^n$, alors il existe $(b_m)_{m \in \Ze} $ telle que :
+        \[
+            \frac{1}{f(x)} = \sum_{m \in \Ze} b_m \e^{im*x} \quad \text{,} \quad \sum_{m \in \Ze } | b_m | < \infty 
+        \]
+    \end{myth}
 \end{frame}
+
+\subsection{Transformée de Gelfand et propriétés}
 
 \begin{frame}{La transformée de Gelfand}
     On définit la transformée de Gelfand par :
@@ -203,58 +236,9 @@
 \end{frame}
 
 
-\begin{frame}{Involution}
-    \begin{mydef}[Involution]
-        Une involution est une fonction $x \in A \longrightarrow \inv{x} \in A$ qui a les propriétés suivantes :
-        \begin{align*}
-            \inv{ (x + y) }  &= \inv{x} + \inv{y}\\
-            \inv{( \lambda x) } &= \overline{\lambda} * \inv{x}\\
-            \inv{( x * y) } &= \inv{ y } * \inv{x}\\
-            (x^\ast)^\ast &= x 
-        \end{align*}
-        Et l'algèbre $A$ n'a pas besoin d'être commutative dans cette définition.
+\section{Petite excursion en physique}
 
-        On dit que $x \in A $ est \emph{hermitien} si et seulement si $\inv{x} = x $.
-    \end{mydef}
-\end{frame}
-
-\begin{frame}{Les \Calgs}
-    \begin{mydef}[Les \Calgs]
-        Une \Calg est une algèbre de Banach munie d'une involution telle que : 
-        \[
-            \| \inv{x} * x \| = \| x \|^2 \quad \forall x \in A
-        \]
-        Cela implique aussi que :
-        \[
-            \| \inv{x} \| = \| x \|
-        \]
-        Et ainsi :
-        \[
-            \| x \inv{x} \| = \| x \| \| \inv{x} \|
-        \]
-    \end{mydef}
-\end{frame}
-
-\begin{frame}{Théorème de \textsc{Gelfand}-\textsc{Naimark}}
-    \begin{myth}[Théorème de \textsc{Gelfand}-\textsc{Naimark}]
-        Si $A$ est une \Calg \emph{commutative}, et en notant $\Delta$ un idéal maximum , alors la transformée de Gelfand est une isométrie de $A$ vers $\mathcal{C}(\Delta)$
-        avec la propriété :
-        \[
-            h(\inv{x}) = \overline{h(x)}
-        \]
-        En particulier : $x$ est hermitien si et seulement si $\hat{x}$ est une fonction réelle.
-    \end{myth}
-\end{frame}
-
-%Fin repêchage des écrits du mémoire ======================================================
-
-%==========================================================================================
-%==========================================================================================
-%==========================================================================================
-
-%Début physique quantique==================================================================
-
-\section{Présentation des (quelques) physiciens à l'origine de la physique quantique}
+\subsection{Présentation des (quelques) physiciens à l'origine de la physique quantique}
 
 \begin{frame}{Physique quantique - Pères fondateurs}
     On doit les fondations de la physique quantique, à partir de 1925, à :
@@ -267,7 +251,7 @@
 
 \end{frame}
 
-\section{Formalisation du monde microscopique}
+\subsection{Formalisation du monde microscopique}
 
 \begin{frame}{Formaliser le monde microscopique}
     \begin{mydef}
@@ -348,12 +332,12 @@
 
 \begin{frame}{Retour sur la positivité}
 
-    Nous avons étendu les observables dans un espace vectoriel complexe. Mais en fait :
+    Nous avons étendu les observables dans un espace vectoriel complexe.
     \begin{myth}
        Les propositions suivantes sont équivalentes :
         \begin{itemize}
             \item Le spectre de $A$ est contenu dans $\R^+$
-            \item Il existe $B \in \mathcal{O}$ telle que $B = A \inv{A} $
+            \item Il existe $B \in \mathcal{O}$ telle que $B = A \inv{A} $ (et on a vu qu'on pouvait demander $A = \inv{A}$.
             \item Pour tout $\omega$, $\omega(A) \geq 0 $
         \end{itemize}
 
@@ -363,7 +347,7 @@
 \begin{frame}{Passage de la commutativité à la non commutativité}
     \begin{alertblock}{Limitations de cette description classique}
             Plusieurs limitations :
-            \begin{itemize}
+            \begin{itemize}[<+->]
                 \item Il est très difficile de préparer $A \in \mathcal{O}$ de façon identique pour le mesurer
                 \item Les mesures ont forcément un écart type non nul.
                 \item \textbf{En physique quantique, mesurer une observable va perturber la prochaine mesure.}
@@ -371,6 +355,129 @@
             On perd donc la notion de commutativité !
     \end{alertblock}
 \end{frame}
+
+\section{Retour sur la théorie de Gelfand}
+
+\subsection{Involutions et \Calgs}
+
+\begin{frame}{Involution}
+    \begin{mydef}[Involution]
+        Une involution est une fonction $x \in A \longrightarrow \inv{x} \in A$ qui a les propriétés suivantes :
+        \begin{align*}
+            \inv{ (x + y) }  &= \inv{x} + \inv{y}\\
+            \inv{( \lambda x) } &= \overline{\lambda} * \inv{x}\\
+            \inv{( x * y) } &= \inv{ y } * \inv{x}\\
+            (x^\ast)^\ast &= x 
+        \end{align*}
+        Et l'algèbre $A$ n'a pas besoin d'être commutative dans cette définition.
+
+        On dit que $x \in A $ est \emph{hermitien} si et seulement si $\inv{x} = x $.
+    \end{mydef}
+\end{frame}
+
+\begin{frame}{Les \Calgs}
+    \begin{mydef}[Les \Calgs]
+        Une \Calg est une algèbre de Banach munie d'une involution telle que : 
+        \[
+            \| \inv{x} * x \| = \| x \|^2 \quad \forall x \in A
+        \]
+        Cela implique aussi que :
+        \[
+            \| \inv{x} \| = \| x \|
+        \]
+        Et ainsi :
+        \[
+            \| x \inv{x} \| = \| x \| \| \inv{x} \|
+        \]
+    \end{mydef}
+\end{frame}
+
+\begin{frame}{Théorème de \textsc{Gelfand}-\textsc{Naimark}}
+    \begin{myth}[Théorème de \textsc{Gelfand}-\textsc{Naimark}]
+        Si $A$ est une \Calg \emph{commutative}, et en notant $\Delta$ un idéal maximum , alors la transformée de Gelfand est une isométrie de $A$ vers $\mathcal{C}(\Delta)$
+        avec la propriété :
+        \[
+            h(\inv{x}) = \overline{h(x)}
+        \]
+        En particulier : $x$ est hermitien si et seulement si $\hat{x}$ est une fonction réelle.
+    \end{myth}
+    \pause 
+    Preuve !
+\end{frame}
+
+\subsection{Racine carrée et excursion dans les algèbres non commutatives}
+
+\begin{frame}{Équivalent de la racine carrée}
+    \begin{myth}
+        Si A est une algèbre de Banach commutative avec une involution, alors si $x = \inv{x}$, et $\sigma(x)$ ne contient aucun
+        réel négatif, alors il existe $y \in A$ tel que $y = \inv{y}$ et $y^2 = x$.
+    \end{myth}
+
+    \pause 
+
+    \begin{alertblock}{La puissance de l'involution}
+        On peut en fait se passer de l'hypothèse de commutativité !
+    \end{alertblock}
+\end{frame}
+
+%\begin{frame}
+%   Soit $S \subset A$.
+%  \begin{mydef}[Centralisateur]
+%       \[
+%           \Gamma(S) = \{ x \in A \ xs = sx \ \forall s \in S \}
+%       \]
+%       $\Gamma(S)$ est une sous algèbre fermée de A. Si $S$ commute, alors $ S \subset \Gamma(\Gamma(S))$ commute.
+%   \end{mydef}
+
+%   \begin{myth}
+%       Soit $A$ une algèbre (non commutative) de Banach. $S \subset A $ et $S$ commute. Soit $B = \Gamma(\Gamma(S))$. Alors # est
+%       une algèbre de Banach commutative et $\sigma_B(x) = \sigma_A(x) $ pour tout $x \in B$.
+%   \end{myth}
+% \end{frame}
+
+\begin{frame}
+    \begin{mydef}
+        Un \emph{élément} $x \in A$ est dit normal si et seulement si $x\inv{x} = \inv{x}x $. Un \emph{ensemble} $ S \subset A $ est dit
+        normal si $S$ commute et si $\inv{x} \in S$ dès que $x \in S$.  
+    \end{mydef}
+
+    \begin{myth}
+        Soit $B$ un ensemble normal qui n'est contenu dans aucun autre plus grand. Alors :
+        \begin{itemize}
+            \item $B$ est une sous algèbre de $A$, fermée et \emph{commutative}
+            \item On a l'égalité des spectres : $\sigma_{B}(x) = \sigma_{A}(x) $ pour tout $x \in B$.
+        \end{itemize}
+    \end{myth}
+
+    On peut alors généraliser les théorèmes avec la remarque suivante :
+    \begin{block}{Remarque}
+        On prend la plus grande sous algèbre normale qui contient $x$ et on applique le théorème ci-dessus.
+    \end{block}
+\end{frame}
+
+\subsection{Pour aller plus loin : Construction GNS}
+
+\begin{frame}{Pour aller plus loin}
+
+    \begin{myth}[Construction de \textsc{Gelfand}-\textsc{Naimark}-\textsc{Segal}]
+        Toute \Calg $A$ est isomorphe à une sous algèbre de \Bh, avec de plus, pour tout $x \in A$ et $X \in \Bhm$ avec $X$ l'image
+        par l'isomorphisme de $x$ :
+        \[
+            \| x \| = \| X \|
+        \]
+    \end{myth}
+\end{frame}
+
+%Fin repêchage des écrits du mémoire ======================================================
+
+%==========================================================================================
+%==========================================================================================
+%==========================================================================================
+
+%Début physique quantique==================================================================
+
+
+\section{Conclusion}
 
 \begin{frame}{Récapitulatif de la traduction physique mathématique}
 
